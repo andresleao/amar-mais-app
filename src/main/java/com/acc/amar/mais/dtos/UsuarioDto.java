@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.acc.amar.mais.models.Usuario;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class UsuarioDto implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -30,6 +31,7 @@ public class UsuarioDto implements Serializable {
 	@NotEmpty(message = "O campo TELEFONE é requerido")
 	private String telefone;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime inscricao;
 	
 	@NotEmpty(message = "O campo SENHA é requerido")

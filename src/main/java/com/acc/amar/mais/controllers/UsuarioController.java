@@ -1,23 +1,27 @@
 package com.acc.amar.mais.controllers;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.acc.amar.mais.dtos.UsuarioDto;
 import com.acc.amar.mais.models.Usuario;
 import com.acc.amar.mais.services.UsuarioService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -38,16 +42,20 @@ public class UsuarioController {
 	
 	// Encontrar o usuário pelo id
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<UsuarioDto> findById(@PathVariable Integer id) {
+	public ResponseEntity<Usuario> findById(@PathVariable Integer id) {
 		Usuario usuario = usuarioService.findById(id);
-		UsuarioDto usuarioDTO = new UsuarioDto(usuario);
-		return ResponseEntity.ok().body(usuarioDTO);
+		return ResponseEntity.ok().body(usuario);
 	}
 	
 	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public void create(@RequestBody UsuarioDto usuarioDTO) {
-		usuarioService.create(usuarioDTO);
-	}
-	
+	public ResponseEntity<Integer> create(@RequestBody @Valid UsuarioDto usuarioDTO) {
+		Usuario user = usuarioService.create(usuarioDTO);	
+		
+		URI uri = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(user.getId())
+				.toUri();
+		
+		return ResponseEntity.created(uri).body(user.getId());		
+	}	
 }
