@@ -17,7 +17,6 @@ import com.acc.amar.mais.services.exceptions.ObjectNotFoundException;
 @Service
 public class UsuarioService {
 
-	// TESTE 2
 	@Autowired 
 	private UsuarioRepository usuarioRepository;
 	
@@ -51,7 +50,7 @@ public class UsuarioService {
 		}
 		
 		Usuario novoUsuario = new Usuario(null, usuarioDTO.getNome(), usuarioDTO.getSobrenome(), usuarioDTO.getCpf(),
-				usuarioDTO.getEmail(), usuarioDTO.getTelefone());
+				usuarioDTO.getEmail(), usuarioDTO.getCidade(), usuarioDTO.getBairro(), usuarioDTO.getTelefone());
 		
 		usuarioRepository.save(novoUsuario);	
 		Usuario usuario = usuarioService.findById(novoUsuario.getId());

@@ -26,6 +26,10 @@ public class Usuario implements Serializable {
 	
 	@Column(unique = true)
 	private String email;
+	
+	private String cidade;
+	private String bairro;
+	
 	private String telefone;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
@@ -33,15 +37,21 @@ public class Usuario implements Serializable {
 	
 	public Usuario() {}
 
-	public Usuario(Integer id, String nome, String sobrenome, String cpf, String email, String telefone) {
+	public Usuario(Integer id, String nome, String sobrenome, String cpf, String email, String cidade, String bairro,
+			String telefone) {
+
 		this.id = id;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.cpf = cpf;
 		this.email = email;
+		this.cidade = cidade;
+		this.bairro = bairro;
 		this.telefone = telefone;
 		this.inscricao = LocalDateTime.now();
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -77,6 +87,22 @@ public class Usuario implements Serializable {
 
 	public String getEmail() {
 		return email;
+	}
+	
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
 	public void setEmail(String email) {

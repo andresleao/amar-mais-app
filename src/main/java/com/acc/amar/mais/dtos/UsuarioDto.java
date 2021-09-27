@@ -28,6 +28,12 @@ public class UsuarioDto implements Serializable {
 	@NotEmpty(message = "O campo EMAIL é requerido")
 	private String email;
 	
+	@NotEmpty(message = "O campo CIDADE é requerido")
+	private String cidade;
+	
+	@NotEmpty(message = "O campo BAIRRO é requerido")
+	private String bairro;
+	
 	@NotEmpty(message = "O campo TELEFONE é requerido")
 	private String telefone;
 	
@@ -45,6 +51,8 @@ public class UsuarioDto implements Serializable {
 		this.sobrenome = usuario.getSobrenome();
 		this.cpf = usuario.getCpf();
 		this.email = usuario.getEmail();
+		this.cidade = usuario.getCidade();
+		this.bairro = usuario.getBairro();
 		this.telefone = usuario.getTelefone();
 		this.inscricao = usuario.getInscricao();
 	}
@@ -55,6 +63,8 @@ public class UsuarioDto implements Serializable {
 		this.sobrenome = usuario.getSobrenome();
 		this.cpf = usuario.getCpf();
 		this.email = usuario.getEmail();
+		this.cidade = usuario.getCidade();
+		this.bairro = usuario.getBairro();
 		this.telefone = usuario.getTelefone();
 		this.inscricao = usuario.getInscricao();
 		this.senha = senha;	
@@ -94,6 +104,22 @@ public class UsuarioDto implements Serializable {
 
 	public String getEmail() {
 		return email;
+	}
+	
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
 	public void setEmail(String email) {
