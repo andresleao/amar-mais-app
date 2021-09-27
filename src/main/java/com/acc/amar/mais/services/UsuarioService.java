@@ -17,6 +17,7 @@ import com.acc.amar.mais.services.exceptions.ObjectNotFoundException;
 @Service
 public class UsuarioService {
 
+	// TESTE 2
 	@Autowired 
 	private UsuarioRepository usuarioRepository;
 	
