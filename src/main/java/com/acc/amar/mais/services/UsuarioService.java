@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.acc.amar.mais.dtos.UsuarioDto;
@@ -25,6 +26,9 @@ public class UsuarioService {
 	
 	@Autowired
 	private LoginRepository loginRepository;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	public List<Usuario> findAll() {
 		return usuarioRepository.findAll();
@@ -55,7 +59,7 @@ public class UsuarioService {
 		usuarioRepository.save(novoUsuario);	
 		Usuario usuario = usuarioService.findById(novoUsuario.getId());
 		
-		Login login = new Login(null, usuario.getEmail(), usuarioDTO.getSenha(), usuario);
+		Login login = new Login(null, usuario.getEmail(), encoder.encode(usuarioDTO.getSenha()), usuario);
 		loginRepository.save(login);
 		
 		return usuario;

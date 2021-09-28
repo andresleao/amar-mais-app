@@ -6,10 +6,10 @@ public class LoginDto {
 
 	private Integer id;
 	
-	@NotEmpty
+	@NotEmpty(message = "Campo EMAIL requerido!")
 	private String email;
 	
-	@NotEmpty
+	@NotEmpty(message = "Campo SENHA requerido!")
 	private String senha;
 	
 	private Integer usuario;

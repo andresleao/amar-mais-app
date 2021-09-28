@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Login {
@@ -14,7 +15,10 @@ public class Login {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotEmpty(message = "Campo EMAIL requerido!")
 	private String email;
+	
+	@NotEmpty(message = "Campo SENHA requerido!")
 	private String senha;
 	
 	@OneToOne

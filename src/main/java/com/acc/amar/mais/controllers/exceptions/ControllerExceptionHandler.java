@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.acc.amar.mais.services.exceptions.DataIntegratyViolationException;
 import com.acc.amar.mais.services.exceptions.ObjectNotFoundException;
+import com.acc.amar.mais.services.exceptions.SenhaInvalidaException;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -22,6 +23,13 @@ public class ControllerExceptionHandler {
 	
 	@ExceptionHandler(DataIntegratyViolationException.class)
 	public ResponseEntity<StandardError> dataIntegratyViolationException(DataIntegratyViolationException e) {
+		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), e.getMessage());
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
+	
+	@ExceptionHandler(SenhaInvalidaException.class)
+	public ResponseEntity<StandardError> senhaInvalidaException(SenhaInvalidaException e) {
 		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), e.getMessage());
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
