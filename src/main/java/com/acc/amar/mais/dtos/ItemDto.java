@@ -1,19 +1,6 @@
 package com.acc.amar.mais.dtos;
-
-import com.acc.amar.mais.models.Doacao;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.sql.Blob;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class ItemDto {
 
     private Integer id;
@@ -23,4 +10,72 @@ public class ItemDto {
     private Blob foto;
     private Boolean isAtivo;
     private Integer idDoacao;
+
+    public ItemDto(){}
+
+    public ItemDto(Integer id, String nome, String descricao, String classificacao, Blob foto, Boolean isAtivo, Integer idDoacao) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.classificacao = classificacao;
+        this.foto = foto;
+        this.isAtivo = isAtivo;
+        this.idDoacao = idDoacao;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(String classificacao) {
+        this.classificacao = classificacao;
+    }
+
+    public Blob getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Blob foto) {
+        this.foto = foto;
+    }
+
+    public Boolean getAtivo() {
+        return isAtivo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        isAtivo = ativo;
+    }
+
+    public Integer getIdDoacao() {
+        return idDoacao;
+    }
+
+    public void setIdDoacao(Integer idDoacao) {
+        this.idDoacao = idDoacao;
+    }
 }

@@ -12,7 +12,17 @@ public class UsuarioMapper {
         dto.setEmail(entity.getEmail());
         dto.setInscricao(entity.getInscricao());
         dto.setTelefone(entity.getTelefone());
-
         return dto;
+    }
+
+    public static Usuario toEntity(UsuarioDto dto){
+        Usuario entity = new Usuario();
+        entity.setId(dto.getId());
+        entity.setNome(dto.getNome());
+        entity.setCpf(dto.getCpf());
+        entity.setEmail(dto.getEmail());
+        entity.setInscricao(dto.getInscricao());
+        entity.setTelefone(dto.getTelefone());
+        return entity;
     }
 }

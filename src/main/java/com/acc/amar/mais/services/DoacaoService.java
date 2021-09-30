@@ -8,6 +8,7 @@ import com.acc.amar.mais.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,7 @@ public class DoacaoService {
         List<Item> itens = doacao.getItens();
         doacao.setItens(null);
         doacao = repository.save(doacao);
-
+        doacao.setDataCriacao(LocalDateTime.now());
         for(Item item : itens){
             item.setDoacao(doacao);
         }

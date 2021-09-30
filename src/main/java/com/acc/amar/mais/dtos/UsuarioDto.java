@@ -5,19 +5,14 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotEmpty;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.acc.amar.mais.models.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+@JsonRootName("usuario")
 public class UsuarioDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -36,6 +31,12 @@ public class UsuarioDto implements Serializable {
 	@NotEmpty(message = "O campo EMAIL é requerido")
 	private String email;
 	
+	@NotEmpty(message = "O campo CIDADE é requerido")
+	private String cidade;
+	
+	@NotEmpty(message = "O campo BAIRRO é requerido")
+	private String bairro;
+	
 	@NotEmpty(message = "O campo TELEFONE é requerido")
 	private String telefone;
 	
@@ -44,4 +45,111 @@ public class UsuarioDto implements Serializable {
 	
 	@NotEmpty(message = "O campo SENHA é requerido")
 	private String senha;
+	
+	public UsuarioDto() {}
+	
+	public UsuarioDto(Usuario usuario) {
+		this.id = usuario.getId();
+		this.nome = usuario.getNome();
+		this.sobrenome = usuario.getSobrenome();
+		this.cpf = usuario.getCpf();
+		this.email = usuario.getEmail();
+		this.cidade = usuario.getCidade();
+		this.bairro = usuario.getBairro();
+		this.telefone = usuario.getTelefone();
+		this.inscricao = usuario.getInscricao();
+	}
+	
+	public UsuarioDto(Usuario usuario, String senha) {
+		this.id = usuario.getId();
+		this.nome = usuario.getNome();
+		this.sobrenome = usuario.getSobrenome();
+		this.cpf = usuario.getCpf();
+		this.email = usuario.getEmail();
+		this.cidade = usuario.getCidade();
+		this.bairro = usuario.getBairro();
+		this.telefone = usuario.getTelefone();
+		this.inscricao = usuario.getInscricao();
+		this.senha = senha;	
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+	
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public LocalDateTime getInscricao() {
+		return inscricao;
+	}
+
+	public void setInscricao(LocalDateTime inscricao) {
+		this.inscricao = inscricao;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 }

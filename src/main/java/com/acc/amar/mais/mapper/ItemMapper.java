@@ -18,7 +18,7 @@ public class ItemMapper {
                 dto.getDescricao(),
                 dto.getClassificacao(),
                 dto.getFoto(),
-                dto.getIsAtivo(),
+                dto.getAtivo(),
                 doacao
         );
         return item;
@@ -31,7 +31,7 @@ public class ItemMapper {
                 entity.getDescricao(),
                 entity.getClassificacao(),
                 entity.getFoto(),
-                entity.getIsAtivo(),
+                entity.getAtivo(),
                 entity.getDoacao().getId()
         );
         return dto;
@@ -46,7 +46,7 @@ public class ItemMapper {
                     entity.getDescricao(),
                     entity.getClassificacao(),
                     entity.getFoto(),
-                    entity.getIsAtivo(),
+                    entity.getAtivo(),
                     entity.getDoacao().getId()
             );
             listDTO.add(dto);
@@ -68,7 +68,7 @@ public class ItemMapper {
                         dto.getDescricao(),
                         dto.getClassificacao(),
                         dto.getFoto(),
-                        dto.getIsAtivo(),
+                        dto.getAtivo(),
                         doacao
                 );
                 listEntity.add(item);

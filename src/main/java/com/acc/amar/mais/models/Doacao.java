@@ -1,20 +1,11 @@
 package com.acc.amar.mais.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class Doacao {
     private static final long serialVersionUID = 1L;
@@ -34,4 +25,56 @@ public class Doacao {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doacao")
     private List<Item> itens;
+
+    public Doacao(){}
+    public Doacao(Integer id, LocalDateTime dataCriacao, Usuario usuario, Integer idUsuarioDoador) {
+        this.id = id;
+        this.dataCriacao = dataCriacao;
+        this.usuario = usuario;
+        IdUsuarioDoador = idUsuarioDoador;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Integer getIdUsuarioDoador() {
+        return IdUsuarioDoador;
+    }
+
+    public void setIdUsuarioDoador(Integer idUsuarioDoador) {
+        IdUsuarioDoador = idUsuarioDoador;
+    }
+
+    public List<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
+    }
 }
