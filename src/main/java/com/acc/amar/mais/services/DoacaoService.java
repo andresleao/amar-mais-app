@@ -35,4 +35,9 @@ public class DoacaoService {
         Optional<Doacao> optionalDoacao = repository.findById(id);
         return optionalDoacao.orElseThrow(() -> new ObjectNotFoundException("Doacao não encontrada"));
     }
+
+   public List<Doacao> findByCategoria(String categoria) {
+        Optional<List<Doacao>> optionalDoacaos = repository.findByCategoria(categoria);
+        return optionalDoacaos.orElseThrow(() -> new ObjectNotFoundException("Doação não encontrada"));
+    }
 }

@@ -35,4 +35,10 @@ public class DoacaoController {
         DoacaoDto doacaoDto = DoacaoMapper.toDTO(service.findById(id));
         return ResponseEntity.ok().body(doacaoDto);
     }
+
+    @RequestMapping(value = "/categoria", method = RequestMethod.GET)
+    public ResponseEntity<List<DoacaoDto>> findByCategoria(@RequestParam String categoria){
+        List<DoacaoDto> doacaoDtoList = DoacaoMapper.toDtoList(service.findByCategoria(categoria));
+        return ResponseEntity.ok().body(doacaoDtoList);
+    }
 }
