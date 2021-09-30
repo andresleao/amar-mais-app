@@ -39,6 +39,19 @@ public class DoacaoService {
 
    public List<Doacao> findByCategoria(String categoria) {
         Optional<List<Doacao>> optionalDoacaos = repository.findByCategoria(categoria);
-        return optionalDoacaos.orElseThrow(() -> new ObjectNotFoundException("Doação não encontrada"));
+        optionalDoacaos.stream().forEach(doacaoList -> {
+            doacaoList.forEach(doacao -> {
+                doacao.getUsuario().setCpf(null);
+            });
+        });
+        return optionalDoacaos.orElseThrow(() -> new ObjectNotFoundException("Nenhuma doação encontrada"));
+    }
+
+    public List<Doacao> findAll() {
+        List<Doacao> doacaoList = repository.findAll();
+        doacaoList.forEach(doacao -> {
+            doacao.getUsuario().setCpf(null);
+        });
+        return doacaoList;
     }
 }
