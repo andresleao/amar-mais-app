@@ -41,4 +41,10 @@ public class DoacaoController {
         List<DoacaoDto> doacaoDtoList = DoacaoMapper.toDtoList(service.findByCategoria(categoria));
         return ResponseEntity.ok().body(doacaoDtoList);
     }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<DoacaoDto>> findAll(){
+        List<DoacaoDto> doacaoDtoList = DoacaoMapper.toDtoList(service.findAll());
+        return ResponseEntity.ok().body(doacaoDtoList);
+    }
 }
