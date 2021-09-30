@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +48,13 @@ public class UsuarioController {
 		return ResponseEntity.ok().body(usuario);
 	}
 	
+//	@GetMapping(value = "/{email}")
+//	public ResponseEntity<Usuario> findByEmail(@PathVariable String email) {
+//		Usuario usuario = usuarioService.findByEmail(email);
+//		return ResponseEntity.ok().body(usuario);
+//	}
+	
+	
 	@PostMapping
 	public ResponseEntity<Integer> create(@RequestBody @Valid UsuarioDto usuarioDTO) {
 		Usuario user = usuarioService.create(usuarioDTO);	
@@ -58,4 +66,13 @@ public class UsuarioController {
 		
 		return ResponseEntity.created(uri).body(user.getId());		
 	}	
+	
+	
+	@PutMapping(value = "/{email}")
+	public ResponseEntity<UsuarioDto> update(@PathVariable String email, @Valid @RequestBody UsuarioDto userDTO) {
+		Usuario obj = usuarioService.update(email, userDTO);
+		UsuarioDto newObj = new UsuarioDto(obj);
+		return ResponseEntity.ok().body(newObj);
+	}
+	
 }

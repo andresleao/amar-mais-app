@@ -1,5 +1,7 @@
 package com.acc.amar.mais.services;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.acc.amar.mais.models.Login;
+import com.acc.amar.mais.models.Usuario;
 import com.acc.amar.mais.repositories.LoginRepository;
 import com.acc.amar.mais.services.exceptions.DataIntegratyViolationException;
+import com.acc.amar.mais.services.exceptions.ObjectNotFoundException;
 import com.acc.amar.mais.services.exceptions.SenhaInvalidaException;
 
 @Service
@@ -33,6 +37,12 @@ public class LoginService implements UserDetailsService {
 //		}
 //		return repository.save(login);
 //	}
+	
+	public Login findByEmail(String email) {
+		Optional<Login> login = repository.findByEmail(email);
+		return login.orElseThrow(
+				() -> new ObjectNotFoundException("Usuário não encontrado! Email: " + email));
+	}
 	
 	public UserDetails autenticar(Login login) {
 		UserDetails user = loadUserByUsername(login.getEmail());

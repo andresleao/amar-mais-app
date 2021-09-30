@@ -50,12 +50,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Autenticação com JWT
 		http
 			.csrf().disable()
-			.authorizeRequests()        //.authenticated   .hasRole("USER")
+			.authorizeRequests()        //.authenticated()   .hasRole("USER")
 //				.antMatchers(HttpMethod.GET, "/pessoa").permitAll()
 				.antMatchers("/login").permitAll()
-				.antMatchers(HttpMethod.POST, "/usuarios").permitAll()
-				.antMatchers("/usuarios/auth").permitAll()
-				//.antMatchers("/usuarios/auth").permitAll()
+				.antMatchers(HttpMethod.POST, "/usuario").permitAll()
+				.antMatchers(HttpMethod.PUT, "/usuario/**").permitAll()
+				//.antMatchers("/usuarios/").permitAll()
+				
 //				.antMatchers("/h2-console/**").permitAll()
 //	            .anyRequest().authenticated()
 //	            .and().csrf().disable()

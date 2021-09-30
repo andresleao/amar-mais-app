@@ -3,6 +3,8 @@ package com.acc.amar.mais.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -40,6 +42,12 @@ public class UsuarioService {
 				() -> new ObjectNotFoundException("Usuário não encontrado! Id: " + id));
 	}
 	
+//	public Usuario findByEmail(String email) {
+//		Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
+//		Usuario usuario = usuarioRepository.
+//		return usuario;
+//	}
+	
 	public Usuario create(UsuarioDto usuarioDTO) {
 		if ((findByEmail(usuarioDTO) != null) && (findByCpf(usuarioDTO) != null)) {
 			throw new DataIntegratyViolationException("CPF e Email já cadastrados!");
@@ -65,6 +73,34 @@ public class UsuarioService {
 		return usuario;
 	}
 	
+	
+	public Usuario update(String email, @Valid UsuarioDto usuarioDTO) {
+		Usuario oldUser = findByEmail(usuarioDTO);
+		
+		if (findByCpf(usuarioDTO) != null && !findByCpf(usuarioDTO).getEmail().equals(email)) {
+			throw new DataIntegratyViolationException("CPF já cadastrado!");
+		}
+		
+		if ((findByEmail(usuarioDTO) == null) || (!findByEmail(usuarioDTO).getEmail().equals(email))) {
+			throw new DataIntegratyViolationException("Não é possível alterar o email da conta!");
+		}
+		
+		oldUser.setId(oldUser.getId());
+		oldUser.setNome(usuarioDTO.getNome());
+		oldUser.setSobrenome(usuarioDTO.getSobrenome());
+		oldUser.setCpf(usuarioDTO.getCpf());
+		oldUser.setEmail(usuarioDTO.getEmail());
+		oldUser.setCidade(usuarioDTO.getCidade());
+		oldUser.setBairro(usuarioDTO.getBairro());
+		oldUser.setTelefone(usuarioDTO.getTelefone());
+		usuarioRepository.save(oldUser);
+		
+		Login login = new Login(oldUser.getId(), oldUser.getEmail(), encoder.encode(usuarioDTO.getSenha()), oldUser);
+		loginRepository.save(login);
+		
+		return oldUser;
+	}
+	
 	private Usuario findByCpf(UsuarioDto usuarioDTO) {
 		Usuario usuario = usuarioRepository.findByCpf(usuarioDTO.getCpf());
 		if (usuario != null) {
@@ -72,6 +108,7 @@ public class UsuarioService {
 		}
 		return null;
 	}
+	
 	
 	private Usuario findByEmail(UsuarioDto usuarioDTO) {
 		Usuario usuario = usuarioRepository.findByEmail(usuarioDTO.getEmail());
