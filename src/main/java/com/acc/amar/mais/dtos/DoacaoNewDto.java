@@ -1,27 +1,27 @@
 package com.acc.amar.mais.dtos;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class DoacaoDto {
+public class DoacaoNewDto {
     private int id;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataCriacao;
-
     @JsonProperty("usuario")
-    private UsuarioDto usuarioDto;
-
+    private UsuarioDto usuario;
     private Integer IdUsuarioDoador;
-    private List<ItemDto> itens;
+    private List<ItemNewDTO> itens;
 
-    public DoacaoDto(){}
+    public DoacaoNewDto(){
+    }
 
-    public DoacaoDto(int id, LocalDateTime dataCriacao, UsuarioDto usuario, Integer idUsuarioDoador) {
+    public DoacaoNewDto(int id, LocalDateTime dataCriacao, UsuarioDto usuarioDto, Integer idUsuarioDoador) {
         this.id = id;
         this.dataCriacao = dataCriacao;
-        this.usuarioDto = usuario;
+        this.usuario = usuarioDto;
         IdUsuarioDoador = idUsuarioDoador;
     }
 
@@ -42,11 +42,11 @@ public class DoacaoDto {
     }
 
     public UsuarioDto getUsuarioDto() {
-        return usuarioDto;
+        return usuario;
     }
 
-    public void setUsuarioDto(UsuarioDto usuario) {
-        this.usuarioDto = usuario;
+    public void setUsuarioDto(UsuarioDto usuarioDto) {
+        this.usuario = usuarioDto;
     }
 
     public Integer getIdUsuarioDoador() {
@@ -57,11 +57,11 @@ public class DoacaoDto {
         IdUsuarioDoador = idUsuarioDoador;
     }
 
-    public List<ItemDto> getItens() {
+    public List<ItemNewDTO> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemDto> itens) {
+    public void setItens(List<ItemNewDTO> itens) {
         this.itens = itens;
     }
 }

@@ -1,6 +1,7 @@
 package com.acc.amar.mais.controllers;
 
 import com.acc.amar.mais.dtos.DoacaoDto;
+import com.acc.amar.mais.dtos.DoacaoNewDto;
 import com.acc.amar.mais.mapper.DoacaoMapper;
 import com.acc.amar.mais.models.Doacao;
 import com.acc.amar.mais.services.DoacaoService;
@@ -21,7 +22,7 @@ public class DoacaoController {
     private DoacaoService service;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> create(@Valid @RequestBody DoacaoDto dto){
+    public ResponseEntity<Void> create(@Valid @RequestBody DoacaoNewDto dto){
         Doacao doacao = service.create(DoacaoMapper.toEntity(dto));
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -34,12 +35,6 @@ public class DoacaoController {
     public ResponseEntity<DoacaoDto> findById(@PathVariable Integer id){
         DoacaoDto doacaoDto = DoacaoMapper.toDTO(service.findById(id));
         return ResponseEntity.ok().body(doacaoDto);
-    }
-
-    @RequestMapping(value = "/categoria", method = RequestMethod.GET)
-    public ResponseEntity<List<DoacaoDto>> findByCategoria(@RequestParam String categoria){
-        List<DoacaoDto> doacaoDtoList = DoacaoMapper.toDtoList(service.findByCategoria(categoria));
-        return ResponseEntity.ok().body(doacaoDtoList);
     }
 
     @RequestMapping(method = RequestMethod.GET)

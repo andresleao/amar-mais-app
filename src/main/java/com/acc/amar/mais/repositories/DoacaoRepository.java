@@ -10,9 +10,4 @@ import java.util.Optional;
 
 public interface DoacaoRepository extends JpaRepository<Doacao, Integer> {
 
-    @Query( value = "SELECT * FROM doacao d" +
-                    " INNER JOIN item i " +
-                    " ON d.id = i.doacao_id" +
-                    " WHERE i.classificacao like :categoria ", nativeQuery = true)
-    Optional<List<Doacao>> findByCategoria(@Param("categoria") String categoria);
 }

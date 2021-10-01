@@ -1,35 +1,28 @@
-package com.acc.amar.mais.models;
+package com.acc.amar.mais.dtos;
+
 import com.acc.amar.mais.models.enuns.ClassificacaoEnum;
 
-import javax.persistence.*;
 import java.sql.Blob;
 
-@Entity
-public class Item {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ItemNewDTO {
     private Integer id;
     private String nome;
     private String descricao;
     private Integer classificacao;
     private Blob foto;
-    private Boolean isAtivo;
+    private Boolean ativo;
+    private Integer idDoacao;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "doacao_id")
-    private Doacao doacao;
+    public ItemNewDTO(){}
 
-    public Item(){}
-
-    public Item(Integer id, String nome, String descricao, ClassificacaoEnum classificacao, Blob foto, Boolean isAtivo, Doacao doacao) {
+    public ItemNewDTO(Integer id, String nome, String descricao, ClassificacaoEnum classificacao, Blob foto, Boolean isAtivo, Integer idDoacao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.classificacao = (classificacao == null) ? null : classificacao.getId();
         this.foto = foto;
-        this.isAtivo = isAtivo;
-        this.doacao = doacao;
+        this.ativo = true;
+        this.idDoacao = idDoacao;
     }
 
     public Integer getId() {
@@ -73,18 +66,18 @@ public class Item {
     }
 
     public Boolean getAtivo() {
-        return isAtivo;
+        return ativo;
     }
 
     public void setAtivo(Boolean ativo) {
-        isAtivo = ativo;
+        this.ativo = ativo;
     }
 
-    public Doacao getDoacao() {
-        return doacao;
+    public Integer getIdDoacao() {
+        return idDoacao;
     }
 
-    public void setDoacao(Doacao doacao) {
-        this.doacao = doacao;
+    public void setIdDoacao(Integer idDoacao) {
+        this.idDoacao = idDoacao;
     }
 }

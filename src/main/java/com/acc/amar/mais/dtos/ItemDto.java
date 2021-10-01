@@ -1,4 +1,6 @@
 package com.acc.amar.mais.dtos;
+import com.acc.amar.mais.models.enuns.ClassificacaoEnum;
+
 import java.sql.Blob;
 
 public class ItemDto {
@@ -8,18 +10,18 @@ public class ItemDto {
     private String descricao;
     private String classificacao;
     private Blob foto;
-    private Boolean isAtivo;
+    private Boolean ativo;
     private Integer idDoacao;
 
     public ItemDto(){}
 
-    public ItemDto(Integer id, String nome, String descricao, String classificacao, Blob foto, Boolean isAtivo, Integer idDoacao) {
+    public ItemDto(Integer id, String nome, String descricao, ClassificacaoEnum classificacao, Blob foto, Boolean isAtivo, Integer idDoacao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.classificacao = classificacao;
+        this.classificacao = classificacao.getString();
         this.foto = foto;
-        this.isAtivo = isAtivo;
+        this.ativo = true;
         this.idDoacao = idDoacao;
     }
 
@@ -64,11 +66,11 @@ public class ItemDto {
     }
 
     public Boolean getAtivo() {
-        return isAtivo;
+        return ativo;
     }
 
     public void setAtivo(Boolean ativo) {
-        isAtivo = ativo;
+        this.ativo = ativo;
     }
 
     public Integer getIdDoacao() {
