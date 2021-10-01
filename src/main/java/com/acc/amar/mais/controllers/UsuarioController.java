@@ -1,11 +1,13 @@
 package com.acc.amar.mais.controllers;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.acc.amar.mais.mapper.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,12 +35,13 @@ public class UsuarioController {
 	// Retornar todos os usuários
 	@GetMapping
 	public ResponseEntity<List<UsuarioDto>> findAll() {
-		List<UsuarioDto> usuarios = usuarioService.findAll()
-				.stream()
-				.map(usuario -> new UsuarioDto(usuario))
-				.collect(Collectors.toList());
-		
-		return ResponseEntity.ok().body(usuarios);
+		List<Usuario> usuarios = usuarioService.findAll();
+		List<UsuarioDto> usuarioDtoList = new ArrayList<>();
+		usuarios.forEach(usuario -> {
+			UsuarioDto dto = UsuarioMapper.toDTO(usuario);
+			usuarioDtoList.add(dto);
+		});
+		return ResponseEntity.ok().body(usuarioDtoList);
 	}
 	
 	// Encontrar o usuário pelo id
@@ -62,7 +65,6 @@ public class UsuarioController {
 				.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(user.getId())
 				.toUri();
-		
 		return ResponseEntity.created(uri).body(user.getId());		
 	}	
 	

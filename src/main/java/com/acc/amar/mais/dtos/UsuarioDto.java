@@ -5,11 +5,14 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.acc.amar.mais.models.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+@JsonRootName("usuario")
 public class UsuarioDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

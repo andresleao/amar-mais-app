@@ -2,14 +2,12 @@ package com.acc.amar.mais.models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Usuario implements Serializable {
@@ -34,6 +32,10 @@ public class Usuario implements Serializable {
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime inscricao;
+
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+	private List<Doacao> doacoes;
 	
 	public Usuario() {}
 
