@@ -43,4 +43,11 @@ public class DoacaoController {
         List<DoacaoDto> doacaoDtoList = DoacaoMapper.toDtoList(service.findAll());
         return ResponseEntity.ok().body(doacaoDtoList);
     }
+
+    @RequestMapping(value = "/ativo", method = RequestMethod.GET)
+    public ResponseEntity<List<DoacaoDto>> findAllByAtivo(){
+        List<DoacaoDto> doacaoDtoList = DoacaoMapper.toDtoList(service.findAllByAtivo());
+        return ResponseEntity.ok().body(doacaoDtoList);
+    }
+
 }
