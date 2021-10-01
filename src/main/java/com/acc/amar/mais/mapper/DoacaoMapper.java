@@ -16,7 +16,7 @@ public class DoacaoMapper {
       entity.setAtivo(dto.isAtivo());
       entity.setDataCriacao(dto.getDataCriacao());
       entity.setItens(ItemMapper.toListEntity(dto.getItens()));
-      entity.setIdUsuarioDoador(dto.getIdUsuarioDoador());
+      entity.setIdDonatario(dto.getIdUsuarioDoador());
       entity.setUsuario(UsuarioMapper.toEntity(dto.getUsuarioDto()));
       return entity;
     }
@@ -27,7 +27,7 @@ public class DoacaoMapper {
         entity.setAtivo(dto.isAtivo());
         entity.setDataCriacao(dto.getDataCriacao());
         entity.setItens(ItemMapper.listItemNewtoListEntity(dto.getItens()));
-        entity.setIdUsuarioDoador(dto.getIdUsuarioDoador());
+        entity.setIdDonatario(dto.getIdUsuarioDoador());
         entity.setUsuario(UsuarioMapper.toEntity(dto.getUsuarioDto()));
         return entity;
     }
@@ -38,7 +38,7 @@ public class DoacaoMapper {
         entity.setAtivo(true);
         dto.setAtivo(entity.isAtivo());
         dto.setItens(ItemMapper.toListDTO(entity.getItens()));
-        dto.setIdUsuarioDoador(entity.getIdUsuarioDoador());
+        dto.setIdUsuarioDoador(entity.getIdDonatario());
         dto.setDataCriacao(entity.getDataCriacao());
         dto.setUsuarioDto(UsuarioMapper.toDTO(entity.getUsuario()));
         return dto;
@@ -49,10 +49,9 @@ public class DoacaoMapper {
         doacaoList.forEach(entity ->{
             DoacaoDto dto = new DoacaoDto();
             dto.setId(entity.getId());
-            entity.setAtivo(true);
             dto.setAtivo(entity.isAtivo());
             dto.setDataCriacao(entity.getDataCriacao());
-            dto.setIdUsuarioDoador(entity.getIdUsuarioDoador());
+            dto.setIdUsuarioDoador(entity.getIdDonatario());
             dto.setUsuarioDto(UsuarioMapper.toDTO(entity.getUsuario()));
             dto.setItens(ItemMapper.toListDTO(entity.getItens()));
 

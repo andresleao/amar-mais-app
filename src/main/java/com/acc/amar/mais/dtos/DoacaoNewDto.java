@@ -24,11 +24,11 @@ public class DoacaoNewDto {
     public DoacaoNewDto(){
     }
 
-    public DoacaoNewDto(int id, LocalDateTime dataCriacao, UsuarioDto usuarioDto, Integer idUsuarioDoador) {
+    public DoacaoNewDto(int id, boolean isAtivo, LocalDateTime dataCriacao, UsuarioDto usuario, Integer idUsuarioDoador) {
         this.id = id;
-        this.isAtivo = true;
+        this.isAtivo = isAtivo;
         this.dataCriacao = dataCriacao;
-        this.usuario = usuarioDto;
+        this.usuario = usuario;
         IdUsuarioDoador = idUsuarioDoador;
     }
 

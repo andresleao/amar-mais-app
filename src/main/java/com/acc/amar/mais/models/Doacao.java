@@ -23,7 +23,7 @@ public class Doacao {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    private Integer IdUsuarioDoador;
+    private Integer idDonatario;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doacao")
     private List<Item> itens;
@@ -35,7 +35,7 @@ public class Doacao {
         this.isAtivo = true;
         this.dataCriacao = dataCriacao;
         this.usuario = usuario;
-        IdUsuarioDoador = idUsuarioDoador;
+        idDonatario = idUsuarioDoador;
     }
 
     public static long getSerialVersionUID() {
@@ -74,12 +74,12 @@ public class Doacao {
         this.usuario = usuario;
     }
 
-    public Integer getIdUsuarioDoador() {
-        return IdUsuarioDoador;
+    public Integer getIdDonatario() {
+        return idDonatario;
     }
 
-    public void setIdUsuarioDoador(Integer idUsuarioDoador) {
-        IdUsuarioDoador = idUsuarioDoador;
+    public void setIdDonatario(Integer idDonatario) {
+        this.idDonatario = idDonatario;
     }
 
     public List<Item> getItens() {

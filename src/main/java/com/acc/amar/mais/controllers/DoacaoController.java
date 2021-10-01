@@ -51,8 +51,8 @@ public class DoacaoController {
     }
 
     @RequestMapping(value = "/disable/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> disableDoacao(@PathVariable Integer id){
-        service.disableDoacao(id);
+    public ResponseEntity<Void> disableDoacao(@PathVariable Integer id, @RequestParam Integer donatario){
+        service.disableDoacao(id, donatario);
         return ResponseEntity.ok().build();
     }
 
