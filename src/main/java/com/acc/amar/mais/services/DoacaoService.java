@@ -50,4 +50,8 @@ public class DoacaoService {
         List<Doacao> doacaoList = repository.findAllByAtivo();
         return doacaoList;
     }
+
+    public void disableDoacao(Integer id) {
+        repository.disableDoacao(id);
+    }
 }
