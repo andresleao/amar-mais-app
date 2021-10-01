@@ -14,6 +14,8 @@ public class Doacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private boolean isAtivo;
+    
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataCriacao;
 
@@ -27,8 +29,10 @@ public class Doacao {
     private List<Item> itens;
 
     public Doacao(){}
+    
     public Doacao(Integer id, LocalDateTime dataCriacao, Usuario usuario, Integer idUsuarioDoador) {
         this.id = id;
+        this.isAtivo = true;
         this.dataCriacao = dataCriacao;
         this.usuario = usuario;
         IdUsuarioDoador = idUsuarioDoador;
@@ -45,8 +49,16 @@ public class Doacao {
     public void setId(Integer id) {
         this.id = id;
     }
+  
+	public boolean isAtivo() {
+		return isAtivo;
+	}
 
-    public LocalDateTime getDataCriacao() {
+	public void setAtivo(boolean isAtivo) {
+		this.isAtivo = isAtivo;
+	}
+
+	public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
 

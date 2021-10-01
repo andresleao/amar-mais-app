@@ -23,6 +23,7 @@ public class DoacaoService {
     public Doacao create(Doacao doacao) {
         List<Item> itens = doacao.getItens();
         doacao.setItens(null);
+        //doacao.setAtivo(true);
         doacao = repository.save(doacao);
         doacao.setDataCriacao(LocalDateTime.now());
         for(Item item : itens){

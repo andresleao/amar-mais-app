@@ -9,10 +9,13 @@ import java.util.List;
 public class DoacaoNewDto {
     
 	private int id;
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    
+	private boolean isAtivo;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataCriacao;
     
-    @JsonProperty("usuario")
+	@JsonProperty("usuario")
     private UsuarioDto usuario;
     
     private Integer IdUsuarioDoador;
@@ -23,11 +26,13 @@ public class DoacaoNewDto {
 
     public DoacaoNewDto(int id, LocalDateTime dataCriacao, UsuarioDto usuarioDto, Integer idUsuarioDoador) {
         this.id = id;
+        this.isAtivo = true;
         this.dataCriacao = dataCriacao;
         this.usuario = usuarioDto;
         IdUsuarioDoador = idUsuarioDoador;
     }
 
+    //usuario
     public int getId() {
         return id;
     }
@@ -35,8 +40,24 @@ public class DoacaoNewDto {
     public void setId(int id) {
         this.id = id;
     }
+    
+	public boolean isAtivo() {
+		return isAtivo;
+	}
 
-    public LocalDateTime getDataCriacao() {
+	public void setAtivo(boolean isAtivo) {
+		this.isAtivo = isAtivo;
+	}
+
+	public UsuarioDto getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioDto usuario) {
+		this.usuario = usuario;
+	}
+
+	public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
 

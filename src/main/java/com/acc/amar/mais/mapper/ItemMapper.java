@@ -20,7 +20,7 @@ public class ItemMapper {
                 dto.getDescricao(),
                 ClassificacaoEnum.toEnum(dto.getDescricao()),
                 dto.getFoto(),
-                dto.getAtivo(),
+                //dto.getAtivo(),
                 doacao
         );
         return item;
@@ -33,7 +33,7 @@ public class ItemMapper {
                 entity.getDescricao(),
                 ClassificacaoEnum.toEnum(entity.getClassificacao()),
                 entity.getFoto(),
-                entity.getAtivo(),
+                //entity.getAtivo(),
                 entity.getDoacao().getId()
         );
         return dto;
@@ -48,7 +48,7 @@ public class ItemMapper {
                     entity.getDescricao(),
                     ClassificacaoEnum.toEnum(entity.getClassificacao()),
                     entity.getFoto(),
-                    entity.getAtivo(),
+                    //entity.getAtivo(),
                     entity.getDoacao().getId()
             );
             listDTO.add(dto);
@@ -70,7 +70,7 @@ public class ItemMapper {
                         dto.getDescricao(),
                         ClassificacaoEnum.toEnum(dto.getClassificacao()),
                         dto.getFoto(),
-                        dto.getAtivo(),
+                        //dto.getAtivo(),
                         doacao
                 );
                 listEntity.add(item);
@@ -94,7 +94,7 @@ public class ItemMapper {
                         dto.getDescricao(),
                         ClassificacaoEnum.toEnum(dto.getClassificacao()),
                         dto.getFoto(),
-                        dto.getAtivo(),
+                        //dto.getAtivo(),
                         doacao
                 );
                 listEntity.add(item);
