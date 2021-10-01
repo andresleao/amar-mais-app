@@ -12,6 +12,8 @@ public class UsuarioMapper {
         dto.setEmail(entity.getEmail());
         dto.setInscricao(entity.getInscricao());
         dto.setTelefone(entity.getTelefone());
+        dto.setBairro(entity.getBairro());
+        dto.setCidade(entity.getCidade());
         return dto;
     }
 
@@ -23,6 +25,8 @@ public class UsuarioMapper {
         entity.setEmail(dto.getEmail());
         entity.setInscricao(dto.getInscricao());
         entity.setTelefone(dto.getTelefone());
+        entity.setBairro(dto.getBairro());
+        entity.setCidade(dto.getCidade());
         return entity;
     }
 }

@@ -10,4 +10,6 @@ import java.util.Optional;
 
 public interface DoacaoRepository extends JpaRepository<Doacao, Integer> {
 
+    @Query(value = "SELECT * FROM DOACAO", nativeQuery = true)
+    List<Doacao> findAllByAtivo();
 }

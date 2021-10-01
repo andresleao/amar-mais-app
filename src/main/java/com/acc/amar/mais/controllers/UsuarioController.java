@@ -43,8 +43,7 @@ public class UsuarioController {
 		});
 		return ResponseEntity.ok().body(usuarioDtoList);
 	}
-	
-	// Encontrar o usuário pelo id
+
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Usuario> findById(@PathVariable Integer id) {
 		Usuario usuario = usuarioService.findById(id);

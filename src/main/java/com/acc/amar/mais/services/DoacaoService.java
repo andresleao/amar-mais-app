@@ -45,4 +45,9 @@ public class DoacaoService {
         });
         return doacaoList;
     }
+
+    public List<Doacao> findAllByAtivo() {
+        List<Doacao> doacaoList = repository.findAllByAtivo();
+        return doacaoList;
+    }
 }
