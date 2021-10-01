@@ -7,16 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DoacaoDto {
     private int id;
-    
     private boolean isAtivo;
-    
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataCriacao;
+    private Integer IdUsuarioDoador;
 
     @JsonProperty("usuario")
     private UsuarioDto usuarioDto;
-
-    private Integer IdUsuarioDoador;
     private List<ItemDto> itens;
 
     public DoacaoDto(){}
