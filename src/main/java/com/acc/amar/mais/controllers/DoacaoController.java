@@ -43,4 +43,17 @@ public class DoacaoController {
         List<DoacaoDto> doacaoDtoList = DoacaoMapper.toDtoList(service.findAll());
         return ResponseEntity.ok().body(doacaoDtoList);
     }
+
+    @RequestMapping(value = "/active", method = RequestMethod.GET)
+    public ResponseEntity<List<DoacaoDto>> findAllByAtivo(){
+        List<DoacaoDto> doacaoDtoList = DoacaoMapper.toDtoList(service.findAllByAtivo());
+        return ResponseEntity.ok().body(doacaoDtoList);
+    }
+
+    @RequestMapping(value = "/disable/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> disableDoacao(@PathVariable Integer id){
+        service.disableDoacao(id);
+        return ResponseEntity.ok().build();
+    }
+
 }
