@@ -10,19 +10,18 @@ public class ItemDto {
     private String descricao;
     private String classificacao;
     private Blob foto;
-    //private Boolean ativo;
+    private Boolean ativo;
     private Integer idDoacao;
 
     public ItemDto(){}
 
-    //Boolean isAtivo
-    public ItemDto(Integer id, String nome, String descricao, ClassificacaoEnum classificacao, Blob foto, Integer idDoacao) {
+    public ItemDto(Integer id, String nome, String descricao, ClassificacaoEnum classificacao, Blob foto, Boolean isAtivo, Integer idDoacao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.classificacao = classificacao.getString();
         this.foto = foto;
-        //this.ativo = true;
+        this.ativo = true;
         this.idDoacao = idDoacao;
     }
 
@@ -66,7 +65,6 @@ public class ItemDto {
         this.foto = foto;
     }
 
-    /*
     public Boolean getAtivo() {
         return ativo;
     }
@@ -74,7 +72,6 @@ public class ItemDto {
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
-    */
 
     public Integer getIdDoacao() {
         return idDoacao;

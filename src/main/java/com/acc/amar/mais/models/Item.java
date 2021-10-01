@@ -14,7 +14,7 @@ public class Item {
     private String descricao;
     private Integer classificacao;
     private Blob foto;
-    //private Boolean isAtivo;
+    private Boolean isAtivo;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doacao_id")
@@ -22,14 +22,13 @@ public class Item {
 
     public Item(){}
 
-    // Boolean isAtivo
-    public Item(Integer id, String nome, String descricao, ClassificacaoEnum classificacao, Blob foto, Doacao doacao) {
+    public Item(Integer id, String nome, String descricao, ClassificacaoEnum classificacao, Blob foto, Boolean isAtivo, Doacao doacao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.classificacao = (classificacao == null) ? null : classificacao.getId();
         this.foto = foto;
-        //this.isAtivo = isAtivo;
+        this.isAtivo = isAtivo;
         this.doacao = doacao;
     }
 
@@ -73,7 +72,6 @@ public class Item {
         this.foto = foto;
     }
 
-    /*
     public Boolean getAtivo() {
         return isAtivo;
     }
@@ -81,7 +79,6 @@ public class Item {
     public void setAtivo(Boolean ativo) {
         isAtivo = ativo;
     }
-    */
 
     public Doacao getDoacao() {
         return doacao;

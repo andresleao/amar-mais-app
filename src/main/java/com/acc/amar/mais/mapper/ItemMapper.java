@@ -1,13 +1,13 @@
 package com.acc.amar.mais.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.acc.amar.mais.dtos.ItemDto;
 import com.acc.amar.mais.dtos.ItemNewDTO;
 import com.acc.amar.mais.models.Doacao;
 import com.acc.amar.mais.models.Item;
 import com.acc.amar.mais.models.enuns.ClassificacaoEnum;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ItemMapper {
 
@@ -20,7 +20,7 @@ public class ItemMapper {
                 dto.getDescricao(),
                 ClassificacaoEnum.toEnum(dto.getDescricao()),
                 dto.getFoto(),
-                //dto.getAtivo(),
+                dto.getAtivo(),
                 doacao
         );
         return item;
@@ -33,7 +33,7 @@ public class ItemMapper {
                 entity.getDescricao(),
                 ClassificacaoEnum.toEnum(entity.getClassificacao()),
                 entity.getFoto(),
-                //entity.getAtivo(),
+                entity.getAtivo(),
                 entity.getDoacao().getId()
         );
         return dto;
@@ -48,7 +48,7 @@ public class ItemMapper {
                     entity.getDescricao(),
                     ClassificacaoEnum.toEnum(entity.getClassificacao()),
                     entity.getFoto(),
-                    //entity.getAtivo(),
+                    entity.getAtivo(),
                     entity.getDoacao().getId()
             );
             listDTO.add(dto);
@@ -70,7 +70,7 @@ public class ItemMapper {
                         dto.getDescricao(),
                         ClassificacaoEnum.toEnum(dto.getClassificacao()),
                         dto.getFoto(),
-                        //dto.getAtivo(),
+                        dto.getAtivo(),
                         doacao
                 );
                 listEntity.add(item);
@@ -94,7 +94,7 @@ public class ItemMapper {
                         dto.getDescricao(),
                         ClassificacaoEnum.toEnum(dto.getClassificacao()),
                         dto.getFoto(),
-                        //dto.getAtivo(),
+                        dto.getAtivo(),
                         doacao
                 );
                 listEntity.add(item);

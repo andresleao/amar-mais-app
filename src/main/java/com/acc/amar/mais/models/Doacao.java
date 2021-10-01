@@ -17,8 +17,6 @@ public class Doacao {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataCriacao;
 
-    private boolean isAtivo;
-    
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
@@ -55,14 +53,8 @@ public class Doacao {
     public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
-    
-    public boolean isAtivo() {
-		return isAtivo;
-	}
-	public void setAtivo(boolean isAtivo) {
-		this.isAtivo = isAtivo;
-	}
-	public Usuario getUsuario() {
+
+    public Usuario getUsuario() {
         return usuario;
     }
 
