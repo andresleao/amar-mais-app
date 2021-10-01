@@ -1,8 +1,10 @@
 package com.acc.amar.mais.mapper;
 
 import com.acc.amar.mais.dtos.ItemDto;
+import com.acc.amar.mais.dtos.ItemNewDTO;
 import com.acc.amar.mais.models.Doacao;
 import com.acc.amar.mais.models.Item;
+import com.acc.amar.mais.models.enuns.ClassificacaoEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ public class ItemMapper {
                 dto.getId(),
                 dto.getNome(),
                 dto.getDescricao(),
-                dto.getClassificacao(),
+                ClassificacaoEnum.toEnum(dto.getDescricao()),
                 dto.getFoto(),
                 dto.getAtivo(),
                 doacao
@@ -29,7 +31,7 @@ public class ItemMapper {
                 entity.getId(),
                 entity.getNome(),
                 entity.getDescricao(),
-                entity.getClassificacao(),
+                ClassificacaoEnum.toEnum(entity.getClassificacao()),
                 entity.getFoto(),
                 entity.getAtivo(),
                 entity.getDoacao().getId()
@@ -44,7 +46,7 @@ public class ItemMapper {
                     entity.getId(),
                     entity.getNome(),
                     entity.getDescricao(),
-                    entity.getClassificacao(),
+                    ClassificacaoEnum.toEnum(entity.getClassificacao()),
                     entity.getFoto(),
                     entity.getAtivo(),
                     entity.getDoacao().getId()
@@ -66,7 +68,31 @@ public class ItemMapper {
                         dto.getId(),
                         dto.getNome(),
                         dto.getDescricao(),
-                        dto.getClassificacao(),
+                        ClassificacaoEnum.toEnum(dto.getClassificacao()),
+                        dto.getFoto(),
+                        dto.getAtivo(),
+                        doacao
+                );
+                listEntity.add(item);
+            });
+            return listEntity;
+        }
+        return null;
+    }
+
+    public static List<Item> listItemNewtoListEntity(List<ItemNewDTO> listDto){
+        if(listDto != null) {
+            List<Item> listEntity = new ArrayList<>();
+            listDto.forEach(dto -> {
+                Doacao doacao = new Doacao();
+                if(dto.getIdDoacao() != null){
+                    doacao.setId(dto.getIdDoacao());
+                }
+                Item item = new Item(
+                        dto.getId(),
+                        dto.getNome(),
+                        dto.getDescricao(),
+                        ClassificacaoEnum.toEnum(dto.getClassificacao()),
                         dto.getFoto(),
                         dto.getAtivo(),
                         doacao

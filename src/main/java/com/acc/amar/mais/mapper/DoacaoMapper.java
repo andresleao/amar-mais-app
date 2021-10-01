@@ -1,13 +1,14 @@
 package com.acc.amar.mais.mapper;
 
 import com.acc.amar.mais.dtos.DoacaoDto;
+import com.acc.amar.mais.dtos.DoacaoNewDto;
 import com.acc.amar.mais.models.Doacao;
-import com.acc.amar.mais.models.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DoacaoMapper {
+
     public static Doacao toEntity(DoacaoDto dto){
       Doacao entity = new Doacao();
       entity.setId(dto.getId());
@@ -16,6 +17,15 @@ public class DoacaoMapper {
       entity.setIdUsuarioDoador(dto.getIdUsuarioDoador());
       entity.setUsuario(UsuarioMapper.toEntity(dto.getUsuarioDto()));
       return entity;
+    }
+    public static Doacao toEntity(DoacaoNewDto dto){
+        Doacao entity = new Doacao();
+        entity.setId(dto.getId());
+        entity.setDataCriacao(dto.getDataCriacao());
+        entity.setItens(ItemMapper.listItemNewtoListEntity(dto.getItens()));
+        entity.setIdUsuarioDoador(dto.getIdUsuarioDoador());
+        entity.setUsuario(UsuarioMapper.toEntity(dto.getUsuarioDto()));
+        return entity;
     }
 
     public static DoacaoDto toDTO(Doacao entity){

@@ -58,7 +58,6 @@ public class UsuarioController {
 				.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(user.getId())
 				.toUri();
-		
 		return ResponseEntity.created(uri).body(user.getId());		
 	}	
 }
