@@ -16,6 +16,6 @@ public interface DoacaoRepository extends JpaRepository<Doacao, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = " UPDATE doacao SET is_ativo = false WHERE id = :id ", nativeQuery = true)
-    void disableDoacao(@Param("id") Integer id);
+    @Query(value = " UPDATE doacao SET is_ativo = false, id_donatario = :donatario WHERE id = :id ", nativeQuery = true)
+    void disableDoacao(@Param("id") Integer id, @Param("donatario") Integer donatario);
 }

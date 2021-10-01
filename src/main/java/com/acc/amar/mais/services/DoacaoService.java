@@ -2,6 +2,7 @@ package com.acc.amar.mais.services;
 
 import com.acc.amar.mais.models.Doacao;
 import com.acc.amar.mais.models.Item;
+import com.acc.amar.mais.models.Usuario;
 import com.acc.amar.mais.repositories.DoacaoRepository;
 import com.acc.amar.mais.repositories.ItemRepository;
 import com.acc.amar.mais.services.exceptions.ObjectNotFoundException;
@@ -19,13 +20,15 @@ public class DoacaoService {
     private DoacaoRepository repository;
     @Autowired
     private ItemRepository itemRepository;
+    @Autowired
+    private UsuarioService usuarioService;
 
     public Doacao create(Doacao doacao) {
         List<Item> itens = doacao.getItens();
         doacao.setItens(null);
-        //doacao.setAtivo(true);
-        doacao = repository.save(doacao);
+        doacao.setAtivo(true);
         doacao.setDataCriacao(LocalDateTime.now());
+        doacao = repository.save(doacao);
         for(Item item : itens){
             item.setDoacao(doacao);
         }
@@ -35,7 +38,7 @@ public class DoacaoService {
 
     public Doacao findById(Integer id) {
         Optional<Doacao> optionalDoacao = repository.findById(id);
-        return optionalDoacao.orElseThrow(() -> new ObjectNotFoundException("Doacao não encontrada"));
+        return optionalDoacao.orElseThrow(() -> new ObjectNotFoundException("Doacao não encontrada! Id: "+id));
     }
 
     public List<Doacao> findAll() {
@@ -51,7 +54,9 @@ public class DoacaoService {
         return doacaoList;
     }
 
-    public void disableDoacao(Integer id) {
-        repository.disableDoacao(id);
+    public void disableDoacao(Integer idDoacao, Integer idDonatario) {
+        Usuario usuarioDonatario = usuarioService.findById(idDonatario);
+        Doacao doacao = findById(idDoacao);
+        repository.disableDoacao(idDoacao, idDonatario);
     }
 }
