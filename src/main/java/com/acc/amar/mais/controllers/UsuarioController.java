@@ -54,7 +54,6 @@ public class UsuarioController {
 //		return ResponseEntity.ok().body(usuario);
 //	}
 	
-	
 	@PostMapping
 	public ResponseEntity<Integer> create(@RequestBody @Valid UsuarioDto usuarioDTO) {
 		Usuario user = usuarioService.create(usuarioDTO);	
@@ -67,12 +66,10 @@ public class UsuarioController {
 		return ResponseEntity.created(uri).body(user.getId());		
 	}	
 	
-	
 	@PutMapping(value = "/{email}")
 	public ResponseEntity<UsuarioDto> update(@PathVariable String email, @Valid @RequestBody UsuarioDto userDTO) {
 		Usuario obj = usuarioService.update(email, userDTO);
 		UsuarioDto newObj = new UsuarioDto(obj);
 		return ResponseEntity.ok().body(newObj);
 	}
-	
 }

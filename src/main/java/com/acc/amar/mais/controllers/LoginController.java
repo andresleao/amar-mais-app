@@ -44,7 +44,6 @@ public class LoginController {
 		return ResponseEntity.ok().body(userId);
 	}
 	
-	
 	@PostMapping
 	public TokenDto autenticar(@RequestBody @Valid CredenciaisDto credenciais) {
 		try {

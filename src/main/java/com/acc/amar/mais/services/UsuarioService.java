@@ -73,7 +73,6 @@ public class UsuarioService {
 		return usuario;
 	}
 	
-	
 	public Usuario update(String email, @Valid UsuarioDto usuarioDTO) {
 		Usuario oldUser = findByEmail(usuarioDTO);
 		
@@ -108,7 +107,6 @@ public class UsuarioService {
 		}
 		return null;
 	}
-	
 	
 	private Usuario findByEmail(UsuarioDto usuarioDTO) {
 		Usuario usuario = usuarioRepository.findByEmail(usuarioDTO.getEmail());
