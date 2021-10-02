@@ -56,4 +56,10 @@ public class DoacaoController {
         return ResponseEntity.ok().build();
     }
 
+    @RequestMapping(value = "/donor/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<DoacaoDto>> findAllByDonor(@PathVariable("id") Integer idDonor){
+        List<DoacaoDto> doacaoDtoList = DoacaoMapper.toDtoList(service.findaAllByDonor(idDonor));
+        return ResponseEntity.ok().body(doacaoDtoList);
+    }
+
 }

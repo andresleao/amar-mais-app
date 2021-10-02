@@ -59,4 +59,10 @@ public class DoacaoService {
         Doacao doacao = findById(idDoacao);
         repository.disableDoacao(idDoacao, idDonatario);
     }
+
+    public List<Doacao> findaAllByDonor(Integer idDonor) {
+        Usuario usuario = usuarioService.findById(idDonor);
+        List<Doacao> doacaoList = repository.findAllByDonor(idDonor);
+        return doacaoList;
+    }
 }
