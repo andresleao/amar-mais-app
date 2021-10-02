@@ -5,6 +5,7 @@ import com.acc.amar.mais.models.Item;
 import com.acc.amar.mais.models.Usuario;
 import com.acc.amar.mais.repositories.DoacaoRepository;
 import com.acc.amar.mais.repositories.ItemRepository;
+import com.acc.amar.mais.services.exceptions.DataIntegratyViolationException;
 import com.acc.amar.mais.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ public class DoacaoService {
     private UsuarioService usuarioService;
 
     public Doacao create(Doacao doacao) {
+        Usuario usuarioDoador = usuarioService.findById(doacao.getUsuario().getId());
         List<Item> itens = doacao.getItens();
         doacao.setItens(null);
         doacao.setAtivo(true);
@@ -57,6 +59,15 @@ public class DoacaoService {
     public void disableDoacao(Integer idDoacao, Integer idDonatario) {
         Usuario usuarioDonatario = usuarioService.findById(idDonatario);
         Doacao doacao = findById(idDoacao);
+        if(doacao.getUsuario().getId() == usuarioDonatario.getId()){
+            throw new DataIntegratyViolationException("Usuário donatario não pode ser o usuário doador!");
+        }
         repository.disableDoacao(idDoacao, idDonatario);
+    }
+
+    public List<Doacao> findaAllByDonor(Integer idDonor) {
+        Usuario usuario = usuarioService.findById(idDonor);
+        List<Doacao> doacaoList = repository.findAllByDonor(idDonor);
+        return doacaoList;
     }
 }
