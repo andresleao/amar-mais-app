@@ -1,6 +1,5 @@
 package com.acc.amar.mais.services;
 
-import com.acc.amar.mais.dtos.ItemNewDTO;
 import com.acc.amar.mais.models.Item;
 import com.acc.amar.mais.repositories.ItemRepository;
 import com.acc.amar.mais.services.exceptions.ObjectNotFoundException;
@@ -19,10 +18,6 @@ public class ItemService {
         Item itemCriado = repository.save(item);
         return itemCriado;
     }
-    public Item findById(Integer id){
-        Optional<Item> item = repository.findById(id);
-        return item.orElseThrow(()->new ObjectNotFoundException("Usuário não encontrado! Id: " + id));
-    }
     public Item update(Item item){
         Item oldItem = findById(item.getId());
         oldItem.setNome(item.getNome());
@@ -32,4 +27,9 @@ public class ItemService {
         repository.save(oldItem);
         return oldItem;
     }
+    public Item findById(Integer id) {
+		Optional<Item> item = repository.findById(id);
+		return item.orElseThrow(
+				() -> new ObjectNotFoundException("Item não encontrado! Id: " + id));
+	}
 }

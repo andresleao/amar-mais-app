@@ -6,7 +6,6 @@ import com.acc.amar.mais.mapper.ItemMapper;
 import com.acc.amar.mais.models.Item;
 import com.acc.amar.mais.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -31,7 +30,6 @@ public class ItemController {
                 .toUri();
         return ResponseEntity.created(uri).build();
     }
-
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@Valid @RequestBody ItemNewDTO dto){
         Item item = ItemMapper.toEntity(dto);
@@ -42,10 +40,17 @@ public class ItemController {
                 .toUri();
         return ResponseEntity.created(uri).build();
     }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<ItemDto> findById(@PathVariable Integer id){
-        ItemDto dto = ItemMapper.toDTO(service.findById(id));
-        return ResponseEntity.ok().body(dto);
-    }
+    
+    @GetMapping(value = "/{id}")
+	  public ResponseEntity<ItemNewDTO> findById(@PathVariable Integer id) {
+		Item item = service.findById(id);
+		
+		ItemNewDTO dto = new ItemNewDTO();
+		dto.setId(item.getId());
+		dto.setClassificacao(item.getClassificacao());
+		dto.setFoto(dto.getFoto());
+		dto.setNome(item.getNome());
+		
+		return ResponseEntity.ok().body(dto);
+	}
 }
