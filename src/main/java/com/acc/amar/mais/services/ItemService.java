@@ -1,9 +1,13 @@
 package com.acc.amar.mais.services;
 
+import com.acc.amar.mais.dtos.ItemNewDTO;
 import com.acc.amar.mais.models.Item;
 import com.acc.amar.mais.repositories.ItemRepository;
+import com.acc.amar.mais.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class ItemService {
@@ -14,5 +18,18 @@ public class ItemService {
     public Item create(Item item) {
         Item itemCriado = repository.save(item);
         return itemCriado;
+    }
+    public Item findById(Integer id){
+        Optional<Item> item = repository.findById(id);
+        return item.orElseThrow(()->new ObjectNotFoundException("Usuário não encontrado! Id: " + id));
+    }
+    public Item update(Item item){
+        Item oldItem = findById(item.getId());
+        oldItem.setNome(item.getNome());
+        oldItem.setDescricao(item.getDescricao());
+        oldItem.setClassificacao(item.getClassificacao());
+        oldItem.setFoto(item.getFoto());
+        repository.save(oldItem);
+        return oldItem;
     }
 }

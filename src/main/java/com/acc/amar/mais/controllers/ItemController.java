@@ -1,16 +1,14 @@
 package com.acc.amar.mais.controllers;
 
 import com.acc.amar.mais.dtos.ItemDto;
+import com.acc.amar.mais.dtos.ItemNewDTO;
 import com.acc.amar.mais.mapper.ItemMapper;
 import com.acc.amar.mais.models.Item;
 import com.acc.amar.mais.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -32,5 +30,22 @@ public class ItemController {
                 .path("/{id}").buildAndExpand(item.getId())
                 .toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<Void> update(@Valid @RequestBody ItemNewDTO dto){
+        Item item = ItemMapper.toEntity(dto);
+        ItemDto responseDto = ItemMapper.toDTO(service.update(item));
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}").buildAndExpand(responseDto.getId())
+                .toUri();
+        return ResponseEntity.created(uri).build();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<ItemDto> findById(@PathVariable Integer id){
+        ItemDto dto = ItemMapper.toDTO(service.findById(id));
+        return ResponseEntity.ok().body(dto);
     }
 }

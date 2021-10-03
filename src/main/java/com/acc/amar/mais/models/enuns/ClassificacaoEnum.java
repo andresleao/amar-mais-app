@@ -41,7 +41,7 @@ public enum ClassificacaoEnum {
                 return classificacaoEnum;
             }
         }
-        throw new IllegalArgumentException("Descrição inválido: "+ descricao);
+        throw new IllegalArgumentException("Classificação inválido: "+ descricao);
     }
 
 }

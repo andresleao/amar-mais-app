@@ -61,5 +61,4 @@ public class DoacaoController {
         List<DoacaoDto> doacaoDtoList = DoacaoMapper.toDtoList(service.findaAllByDonor(idDonor));
         return ResponseEntity.ok().body(doacaoDtoList);
     }
-
 }
