@@ -21,7 +21,6 @@ public class Item {
 
     public Item(){}
 
-   
     public Item(Integer id, String nome, String descricao, ClassificacaoEnum classificacao, Blob foto, Doacao doacao) {
         this.id = id;
         this.nome = nome;

@@ -80,6 +80,7 @@ public class UsuarioService {
 			throw new DataIntegratyViolationException("CPF já cadastrado!");
 		}
 		
+		
 		if ((findByEmail(usuarioDTO) == null) || (!findByEmail(usuarioDTO).getEmail().equals(email))) {
 			throw new DataIntegratyViolationException("Não é possível alterar o email da conta!");
 		}

@@ -53,8 +53,6 @@ public class Usuario implements Serializable {
 		this.inscricao = LocalDateTime.now();
 	}
 
-
-
 	public Integer getId() {
 		return id;
 	}
@@ -125,5 +123,13 @@ public class Usuario implements Serializable {
 
 	public void setInscricao(LocalDateTime inscricao) {
 		this.inscricao = inscricao;
+	}
+
+	public List<Doacao> getDoacoes() {
+		return doacoes;
+	}
+
+	public void setDoacoes(List<Doacao> doacoes) {
+		this.doacoes = doacoes;
 	}
 }

@@ -48,6 +48,7 @@ public class ItemController {
 		ItemNewDTO dto = new ItemNewDTO();
 		dto.setId(item.getId());
 		dto.setClassificacao(item.getClassificacao());
+		dto.setDescricao(item.getDescricao());
 		dto.setFoto(dto.getFoto());
 		dto.setNome(item.getNome());
 		

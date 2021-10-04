@@ -50,12 +50,6 @@ public class UsuarioController {
 		return ResponseEntity.ok().body(usuario);
 	}
 	
-//	@GetMapping(value = "/{email}")
-//	public ResponseEntity<Usuario> findByEmail(@PathVariable String email) {
-//		Usuario usuario = usuarioService.findByEmail(email);
-//		return ResponseEntity.ok().body(usuario);
-//	}
-	
 	@PostMapping
 	public ResponseEntity<Integer> create(@RequestBody @Valid UsuarioDto usuarioDTO) {
 		Usuario user = usuarioService.create(usuarioDTO);	
