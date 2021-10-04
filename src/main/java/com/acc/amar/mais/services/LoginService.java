@@ -41,12 +41,12 @@ public class LoginService implements UserDetailsService {
 	public Login findByEmail(String email) {
 		Optional<Login> login = repository.findByEmail(email);
 		return login.orElseThrow(
-				() -> new ObjectNotFoundException("Usuário não encontrado! Email: " + email));
+				() -> new ObjectNotFoundException("Usuário não encontrado!"));
 	}
 	
 	public UserDetails autenticar(Login login) {
 		UserDetails user = loadUserByUsername(login.getEmail());
-		System.out.println(user.getUsername());
+		findByEmail(user.getUsername());
 		login.getSenha();
 		user.getPassword();
 		boolean senhasConferem = encoder.matches(login.getSenha(), user.getPassword());

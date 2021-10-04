@@ -2,7 +2,7 @@ package com.acc.amar.mais.models.enuns;
 
 public enum ClassificacaoEnum {
     MEDICACAO(1, "Medicação"),
-    MOBILIARIO(2, "Moboliario"),
+    MOBILIARIO(2, "Mobiliário"),
     EQUIPAMENTO(3, "Equipamento");
 
     private int id;

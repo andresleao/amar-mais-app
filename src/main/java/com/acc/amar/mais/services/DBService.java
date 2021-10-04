@@ -32,7 +32,7 @@ public class DBService {
 	ItemRepository itemRepository;
 
 	public void instanciaDB() {
-		Usuario usuario1 = new Usuario(null, "André", "Souza Leão", "502.176.700-32", "andresouza@gmail.com", "Recife",
+		Usuario usuario1 = new Usuario(null, "André", "Souza Leão", "502.176.700-32", "andreleao@gmail.com", "Recife",
 				"Espinheiro", "(81)98888-8811");
 		Login login1 = new Login(null, "andreleao@gmail.com", encoder.encode("12345"), usuario1);
 		
